@@ -1,8 +1,8 @@
 202502114132
 
-Tags:
+Tags: [[Greedy Algorithm]]
 
-Dijkstra's algorithm is used to choose the shortest path between nodes in a [[Graphs|graph]]. 
+Dijkstra's algorithm is a greedy algorithm used to choose the shortest path between nodes in a [[Graphs|graph]]. 
 
 ## Priority Queue
 A priority queue is the kind of data structure used in Dijkstra's algorithm. There are four operations that it supports
