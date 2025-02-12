@@ -1,6 +1,6 @@
 20250109121950
 
-Tags:
+Tags: [[Graph]]
 
 Informally, a graph is a mathematical structure representing relationships. They are also called, networks, with the nodes and connections between the nodes defining the networks. 
 

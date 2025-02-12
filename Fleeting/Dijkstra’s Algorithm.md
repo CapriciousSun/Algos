@@ -1,6 +1,6 @@
 202502114132
 
-Tags: [[Greedy Algorithm]]
+Tags: [[Greedy Algorithms]]
 
 Dijkstra's algorithm is a greedy algorithm used to choose the shortest path between nodes in a [[Graphs|graph]]. 
 
@@ -32,4 +32,6 @@ The complexity of Dijkstra's algorithm is linear time when abstracted, but in re
 | Binary Heap    | $O(\log\|V\|)$                              | $O(\log\|V\|)$                             | $O((\|V\| + \|E\|)\log(\|V\|))$                                    |
 | d-ary Heap     | $O\left( \frac{d\log\|V\|}{\log d} \right)$ | $O\left( \frac{\log\|V\|}{\log d} \right)$ | $O\left( (\|V\| \cdot d + \|E\|) \frac{\log\|V\|}{\log d} \right)$ |
 | Fibonacci Heap | $O(\log\|V\|)$                              | $O(1)$ amortized                           | $O(\|V\|\log\|V\| + \|E\|)$                                        |
-
+___
+# References
+[[Algorithms]]

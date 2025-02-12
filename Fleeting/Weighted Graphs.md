@@ -14,4 +14,7 @@ When running breadth-first search at the basic level, the assumption is that the
 A subset of weighted graphs is signed graph, where negative edge lengths exist. Dijkstra's algorithm is not helpful in this scenario, as the shortest path to and from any point would have to pass through shorter points along the way. This no longer holds for paths with negative length. 
 
 ## Bellman-Ford Algorithm
-The [[Bellman-Ford Algorithm]] is what's used for signed graphs. The
+The [[Bellman-Ford Algorithm]] is what's used for signed graphs. Since Dijkstra's algorithm's greedy nature does not fare well with signed edge lengths, an iterative approach is needed.
+___
+# References
+[[Algorithms]]

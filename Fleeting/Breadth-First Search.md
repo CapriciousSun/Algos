@@ -29,6 +29,10 @@ def bfs(G, v):
 					queue.append(w)
 ```
 
+![[Pasted image 20250212015140.png]]
+
+![[Pasted image 20250212015203.png]]
+
 ## Runtime Complexity
 The overall runtime complexity of breadth-first search is linear with $O(|V| + |E|)$ for a graph $G(V, E)$.
 ___

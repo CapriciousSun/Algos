@@ -1,6 +1,6 @@
 20250210164708
 
-Tags:
+Tags: [[Graph]]
 
 An undirected [[Graphs|graph]] is a graph where the edges go both directions.
 
@@ -9,3 +9,6 @@ Using [[Depth-First Search|depth-first search]] for undirected graph might not b
 
 ## Breadth-First Search
 [[Breadth-First Search|Breadth-first search]] is far more useful, as it gives information regarding the distance between nodes. ![[Pasted image 20250210173227.png]]
+___
+# References
+[[Algorithms]]

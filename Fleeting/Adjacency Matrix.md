@@ -21,4 +21,4 @@ An adjacency matrix has a few characteristics with its [[Big O Notation#General 
 
 ___
 ## References
-[[Algorithms.pdf]]
+[[Algorithms]]

@@ -29,6 +29,8 @@ def dfs(G, V):
 					stack.append(v)
 ```
 
+![[Pasted image 20250212015307.png]]
+
 ## Runtime Complexity
 The runtime complexity of a depth first search is linear, as it is the combination of $O(|E|) + O(|V|) = O(|V| + |E|)$. 
 
