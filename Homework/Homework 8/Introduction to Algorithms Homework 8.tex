@@ -1,0 +1,43 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{indentfirst}
+\title{Introduction to Algorithms Homework 8}
+\author{Jeremy Chen}
+\begin{document}
+	\maketitle
+\section*{(1) DPV Problem 6.17}
+\noindent Given an unlimited supply of coins of denominations $x_{1}, x_{2}, \dots, x_{n}$, we wish to make change for a value $v$; that is, we wish to find a set of coins whose total value is $v$. That might not be possible: for instance, if the denominations are 5 and 10 then we can make change for 15 but not for 12. Given an $O(nv)$ dynamic-programming algorithm for the following problem.
+
+$\begin{array}{lr}
+Input: x_{1}, \dots, x_{n}; v \\
+Questions: \text{Is it possible to make change for } v \text{using coins of denominations } x_{1}, \dots, x_{n}?
+\end{array}$
+
+\textbf{Subproblem: }The subproblem is $C(v)$ where it represents the maximum value achievable with a knapsack capacity of $v$.
+
+\textbf{Algorithm: }The algorithm is $C(v) = \underset{i: w_{i} \leq w}{min}\{ C(w - w_{i}) + v_{i} \}$ subject to the constraints $v = \sum_{n = 1}^{n} w_{i}x_{i}$
+where $w_{i}$ is some arrangement of the coins in terms of increasing values and there's one of each coin. There is also the constraint $0 \leq x_{i}$. 
+
+\textbf{Proof: } This solution works because the algorithm starts at lower values of coins to find combinations that match the total value, but then decreases the number of coins allowed until the optimal solution is found. 
+
+\section*{(2) DPV Problem 6.19}
+Given an unlimited supply of coins of denominations $x_{1}, x_{2}, \dots, x_{n}$, we wish to make change for a value $v$ using at most $k$ coins; that is, we wish to find a set of $\leq k$ coins whose total value is $v$. This might not be possible: for instance, if the denominations are 5 and 10 and $k = 6$, then we can make change for 55 but not for 65. Give an efficient dynamic-programming algorithm for the following problem.
+
+$\begin{array}{lr}
+Input: x_{1}, \dots, x_{n}; v \\
+Questions: \text{Is it possible to make change for } v \text{ using at most } k \text{ coins, of denominations } x_{1}, \dots, x_{n}?
+\end{array}$
+
+\textbf{Subproblem: }The subproblem $C(v)$ remains the same as the previous quesiton, where it represents some maximum value achievable with a knapsack capacity of $v$ and a coin constraint of $k$
+
+\textbf{Algorithm: }The algorithm is $C(v) = \underset{i: w_{i} \leq w}{min} \{ C(w - w_{i} + v_{i}) \}$ subject to the constraints $v = \sum_{i = 1}^{N} w_{i}x_{i}$ and $x_{i} \in {0, 1, \dots, k}$, where $w_{i}$ is some weight assigned to each coin, $v_{i}$ is the value of the coin, and $x_{i}$ is some size of the knapsack. 
+
+\textbf{Proof: }The solution works because by restricting the number of coins to $\leq k$, it ensures that whatever solutions the algorithm comes up with, it'll either be unable to come up with one or it will be below the $k$ limit. The minimization function ensures that the least amount of coins gets selected for each subproblem. 
+
+\section*{(3) Programming Assignment: Knapsack without repetition}
+\textbf{Solutions for greedy algorithm: }94, 185, 292
+
+\textbf{Solutions for dynamic programming: }95, 191, 288
+\end{document}

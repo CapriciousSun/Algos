@@ -1,0 +1,37 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{indentfirst}
+\title{Introduction to Algorithms Homework 6}
+\author{Jeremy Chen}
+\begin{document}
+	\maketitle
+\section*{(1) DPV Problem 2.4}
+\noindent Suppose you are choosing between the following three algorithms:
+\begin{itemize}
+	\item Algorithm $A$ solves problems by dividing them into five subproblems of half the size, recursively solving each subproblem, and then combining the solutions in linear time.
+	\item Algorithm $B$ solves problems of size $n$ by recursively solving two subproblems of size $n - 1$ and then combining the solutions in constant time.
+	\item Algorithm $C$ solves problems of size $n$ by dividing them into nine subproblems of size $n/3$, recursively solving each subproblem, and then combining the solutions in $O(n^{2})$ time.
+\end{itemize}
+What are the running times of each of these algorithms (in big-O notation), and which would you choose?
+
+\textbf{Answer:} Algorithm $A$ has $O(n^{log_{2}5})$ time. Algorithm $B$ has $O(n^{log_{1}2})$ time. Algorithm $C$ has $O(n^{2}logn)$ time. I would choose Algorithm $A$, because as $n$ approaches infinity, it is the least.
+
+\section*{(2) DPV Problem 2.16}
+\noindent You are given an infinite array $A[\cdot]$ in which the first $n$ cells contain integers in sorted order and the rest of the cells are filled with $\infty$. You are $not$ given the value of $n$. Describe an algorithm that takes an integer $x$ as input and finds a position in the array containing $x$, if such a position exists, in $O(log\ n)$ time. (If you are disturbed by the fact that the array $A$ has infinite length, assume instead that it is of length $n$, but that you don't know this length, and that the implementationof the array data type in your programming language returns the error message $\infty$ whenever elements $A[i]$ with $i > n$ are accessed.)
+
+\textbf{Answer:} A binary search algorithm will be the algorithm used for this. The program will recursive split the array into halves, and compared the greatest value of the left partition and the lowest value of the right partition to $x$. If the greatest value of the left partition is greater than $x$, then $x$ will be in the left partition. Otherwise, it'll be in the right partition. Repeat this until $x$ is found, or return $\infty$.
+
+\section*{(3) DPV Problem 2.22}
+\noindent You are given two sorted lists of size $m$ and $n$. Give an $O(log\ m + log\ n)$ time algorithm for computing the $k$th smallest element in the union of the two lists
+
+\textbf{Answer:} In order to find the $k$th smallest element, split the two lists into $k/2$ parts. So if the first list's element at $[k/2]$ is less than the second list's element at $[k/2]$, that must mean that the first list's $[k/2]$ is less than the $k$th element, and that the $k$th element must come after the first list's $[k/2]$. Increment the first list's element to $[k/2 + 1]$. This means the $k$th smallest element must either be the second list's $[k/2]$ or come after it. 
+
+\section*{(4) DPV Problem 2.23}
+\noindent An array $A[1 \dots n]$ is said to have a $majority element$ if more than half of its entires are the same. Given an array, the task is to design an efficient algorithm to tell whether the array has a majority element, and, if so, to find that element. The elements of the array are not necessarily from some ordered domain like the integers, and so there can be no comparisons of the form "is $A[i] > A[j]$?". (Think of the array elements as GIF files, say.) However you $can$ answer questions of the form "is $A[i] = A[j]$?" in constant time.
+\subsection*{(a)}
+First go through the entire array once to learn about al the unique elements within the array. Then, for each unique element in the array, use a binary search method in order to iterate through the entire array in search of that unique element.
+\subsection*{(b)}
+After the algorithm, there will only be at most $n/2$ elements left because if the entire array were the same element, and the algorithm calls for the deletion of one of the elements in the comparison, every other copy of the element would be deleted, leaving only $n/2$ elements left. 
+\end{document}

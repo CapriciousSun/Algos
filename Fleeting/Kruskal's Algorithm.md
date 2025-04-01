@@ -9,7 +9,7 @@ The steps for Kruskal's algorithm is sporadic, with a focus on finding the globa
 2. Find the lightest edge and add it to the stack
 3. Every time the addition of a new edge creates a cycle, remove it
 4. Repeat until all edges have been visited or removed
-
+The main difference between Kruskal's algorithm and [[Prim's Algorithm|Prim's algorithm]] 
 ## Implementation
 ![[Pasted image 20250212011454.png]]
 

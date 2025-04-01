@@ -1,0 +1,87 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{subfig}
+\title{Algos Homework 5}
+\author{Jeremy Chen}
+\begin{document}
+	\maketitle
+\section*{(1) DPV Problem 5.5}
+\noindent Consider an undirected graph $G = (V, E)$ with nonnegative edge weights $w_{e} \geq 0$. Suppose thatyou have computed a minimum spanning tree of $G$, and that you have also computed shortestpaths to all nodes from a particular node $s \in V$. 
+
+\noindent Now supposed each edge weight is increased by 1: the new weight are $w_{e}^{'} = w_{e} + 1$.
+\subsection*{(a) Does the minimum spanning tree change? Give an example where it changes or prove it cannot change.}
+The minimum spanning tree does not change. For example, using Prim's algorithm and traversing a graph, the minimum spanning tree would be maintained because the order in which the graph is traversed remains the same even when the edge weights are increased by 1. 
+\begin{figure}[h!]
+\centering
+\subfloat[Original Graph]{\includegraphics[width=0.7\textwidth]{"5.5 Graph.png"}}
+\end{figure}
+\begin{figure}[h!]
+\centering
+\subfloat[Original MST]{\includegraphics[width=0.4\textwidth]{"a) Original MST.png"}}
+\hfill
+\subfloat[Weight Increased MST]{\includegraphics[width=0.4\textwidth]{"b) Increased MST.png"}}
+\end{figure}
+
+\noindent The above example shows that changing the weight to a graph does not change the existing MST generated with Prim's algorithm. 
+\subsection*{(b) Do the shortest paths change? Give an example where they change or prove they cannot change.}
+The shortest path do change. If the shortest path between two nodes is given by connecting more nodes and there is another longer path directly between the two nodes, when the weight of the edges increase, this could result in a change in the shortest path. 
+\begin{figure}[h!]
+\centering
+\subfloat[Original Shortest Path]{\includegraphics[width=0.5\textwidth]{"Shortest Path Original.png"}}
+\hfill
+\subfloat[Increased Weight Path]{\includegraphics[width=0.5\textwidth]{"Shortest Path Increased.png"}}
+\end{figure}
+
+\section*{(2) DPV Problem 5.9}
+\noindent The following statements may or may not be correct. In each case, either prove it (if it is correct)or give a counterexample (if it isn't correct). Always assume that the graph $G = (V, E)$ is undirected. Do not assume that edge weights are distinct unless this is specifically stated. 
+\subsection*{(a) If graph $G$ has more than $|V| - 1$ edges, and there is a unique heaviest edge, then this edge cannot be part of a minimum spanning tree.}
+This is true, since a minimum spanning tree would use at max $|V| - 1$ edges. If there is a unique heaviest edge, then it would come at the bottom of priority of use in a minimum spanning tree. And if there are more than $|V| - 1$ edges, then it would not be used at all due to the two other reasons. 
+\subsection*{(b) If $G$ has a cycle with a unique heaviest edge $e$, then $e$ cannot be part of any MST.}
+That's not true. As an example, the following has the edge connecting $C$ and $D$ is the unique heaviest edge, yet it is part of the MST. 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.3\textwidth]{"b) Graph.png"}
+\end{figure}
+\subsection*{(c) Let $e$ be any edge of minimum weight in $G$. Then $e$ must be part of every MST.}
+This is true, Using Kruskal's algorithm, the minimum edge will always be selected, since it looks for the global minimum edge. 
+\subsection*{(d) If the lightest edge in a graph is unique, then it must be part of every MST.}
+This is also true because of Kruskal's algorithm design to choose the lightest edge in a graph to construct the minimum spanning tree. 
+\subsection*{(e) If $e$ is part of some MST of $G$, then it must be a lightest edge across some cut of $G$.}
+This is true, because a cut of $G$ could just be two nodes, and the edge that connect those two edges would comprise of some edge $e$ as long as it is part of the graph $G$. 
+\subsection*{(f) If $G$ has a cycle with a unique lightest edge $e$, then $e$ must be part of every MST.}
+This is true because if is a cycle, and a minimum spanning tree could not have cycles, then it must be selected to avoid any of the other edges from being selected. In other words, In order to reach all the nodes within the cycle, the traversal would reach the minimum edge no matter what. 
+\subsection*{(g) The shortest-path tree computed by Dijkstra's algorithm is necessarily an MST.}
+This is not true, because Dijkstra's algorithm does not work for negative edges, which could be included in a graph. 
+\subsection*{(h) The shortest path between two nodes is necessarily part of some MST.}
+This is not true. The shortest path between two edges could have greater length the composite of edges that add up to a greater path length. 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.7\textwidth]{"h) Graph.png"}
+\end{figure}
+\subsection*{i) Prim's algorithm works correctly when there are negative edges.}
+This is true, as Prim's algorithm evolves the tree by adding the least weighted edge to the tree, hence it does not care for negative edge weights as that would counter for lighter weighted edges.
+\hfill
+\subsection*{(j) (For any $r > 0$, define an $r$-path to be a path whose edges all have weight $< r$.) If $G$ contains an $r$-path from node $s$ to $t$, then every MST of $G$ must also contain an $r$-path from node $s$ to node $t$.}
+This is not true, because of the same logic for question (h). For an $r = 4$, the following graph would have an $r$-path normally, but not in its minimum spanning tree. The graph and the gree below illustrate that. 
+\begin{figure}[h!]
+\centering
+\subfloat[Graph]{\includegraphics[width=0.5\textwidth]{"j) Graph.png"}}
+\hfill
+\subfloat[Minimum Spanning Tree]{\includegraphics[width=0.5\textwidth]{"j) MST.png"}}
+\end{figure}
+
+\section{(3) DPV Problem 5.14}
+\noindent Suppose the symbols $a, b, c, d, e$ occur with frequencies $\frac{1}{2}, \frac{1}{4}, \frac{1}{8}, \frac{1}{16}, \frac{1}{16}$, respectively. 
+\subsection*{(a) What is the Huffman encoding of the alphabet?}
+The Huffman encoding of the alphabet would be 0 for A, 10 for B, 110 for C, 1110 for D, 1111 for E. 
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.4\textheight]{"5.19 Huffman Tree.png"}
+\end{figure}
+\subsection*{(b) If this encoding is applied to a file consisting of 1,000,000 characters with the given frequencies,what is the length of the encoded file in bits?}
+The length would be $500,000 * 1 + 250,000 + 2 + 125,000 * 3 + 62,500 * 4 + 62,500 * 4 = 1,625,002$ bits. 
+\end{document}

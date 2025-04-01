@@ -1,0 +1,58 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{indentfirst}
+\usepackage{listings}
+\title{Introduction to Algorithms Homework 7}
+\author{Jeremy Chen}
+\date{March 13, 2025}
+\begin{document}
+	\maketitle
+	
+\section*{(1) DPV Problem 6.3}
+\noindent Yuckdonald's is considering opening a series of restaurants along Quaint Valley Highway (QVH). The $n$ possible locations are along a straight line, and the distances of these locations from the start of QVH are, in miles and in increasing order, $m_{1}, m_{2}, \dots, m_{n}$. The constraints are as follows:
+\begin{itemize}
+	\item At each location, Yuckdonald's may open at most one restaurant. The expected profit from opening a restaurant at location $i$ is $p_{i}$, where $p_{i} > 0$ and $i = 1, 2, \dots, n$. 
+	\item Any two restaurants should be at least $k$ miles apart, where $k$ is a postive integer.
+\end{itemize}
+Give an efficient algorithm to compute the maximum expected total profit subject to the given constraints. 
+
+\textbf{Subproblem:} Define subproblem $P(i)$ is the max profit yielded from one of the restaurants $0 \leq P[i]$; $0 \leq i \leq n $ where $n$ is the total possible number of locations.
+
+\textbf{Recurrence:} 
+\begin{lstlisting}
+for i in range(length of n):
+	P[i] = p[i]
+	for j in range(i - 1):
+	if (m[i] - m[j] >= k):
+		P[i] = max(P[i], p[i] + P[j])
+	P[i] = max(P[i]	, P[i - 1])
+\end{lstlisting}
+
+\textbf{Proof:} This works because the program recursive tests out every previous restaurant from the current restaurant to compare if the profits can be maximized, which means every single possibility will be tested out.
+
+\section*{(2) DPV Problem 6.4}
+\noindent You are given a string of $n$ characters $s[1 \dots n]$, which you believe to be a corrupted text document in which all punctuation has vanished (so that it looks something like "itwasthebestoftimes..."). You wish to reconstruct the document using a dictionary, which is available in the form of a Boolean function $dict(\cdot)$: for any string $w$
+$$dict(w) = \begin{cases}
+true \text{      if } w \text{is a valid word} \\
+false \text{      otherwise}.
+\end{cases}$$
+\subsection*{(a) Give a dynamic programming algorithm that determines whether the string $s[\cdot]$ can be reconstituted as a sequence of valid words. The running time should be at most $O(n^{2})$, assuming calls to $dict$ take unit time.}
+\textbf{Subproblem:} Define subproblem $P[i]$ for $0 \leq i \leq n$, where $n$ is the total size of the string
+
+\textbf{Recurrence:}
+\begin{lstlisting}
+P[0] = True
+for i in range(1 to n):
+	for j in range(0 to i):
+		if P[i - 1] = true and dict(s[j, i]) = true:
+			P[i] = true
+\end{lstlisting}
+
+\textbf{Proof:} The reason for this working is because every single letter would be checked backwards. Every single possible combination of letters would be found. 
+
+\section*{(3) Divide and Conquer Programming Assignment: Median Computation}
+The solution to $k=10$ should be 10. 
+The fastest algorithm is algorithm 1. As it scales up, it should remain the same, since both quickselect and median of medians runs at $O(n)$ instead of quicksort's $O(nlogn)$.
+\end{document}
