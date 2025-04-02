@@ -59,8 +59,61 @@ The constraints of this problem are
 ```
 
 #### Procedure
-Solving an unbounded knapsack problem also involves the use of tabulation. Set the entirety of the first row to entirely how much of the first item the "knapsack" can carry at every single weight. For every single block, calculate the max value that can be obtained by not taking and taking the current item. Compare those, to find the max of that. Once that's finished, the max value will be found at the last row's last column. 
-```ad-example
-A kna
+Solving an unbounded knapsack problem also involves the use of tabulation. First, sort the items by their weight. Then, set the rows to the weights possible and the columns to the items. Set the entirety of the first row to entirely how much of the first item the "knapsack" can carry at every single weight. For every other block, calculate the maximum by comparing the value one row above (not taking the item) and the item plus whatever weights came before (taking the item), given that it fits within the weight constraints.
+
+```Python
+def unbounded_knapsack(weight : int, array : list[int, int]):
+  knapsack = [[0 for x in range(weight + 1)] for y in range(len(array))]
+  array = sorted(array, key=lambda x: x[0])
+  value = 1
+  heft = 0
+
+  for i in range(weight + 1):
+    knapsack[0][i] = array[0][1] * (i // array[0][0])
+
+  for item in range(1, len(array)):
+    for kgs in range(weight + 1):
+      if (array[item][heft] <= kgs):
+        not_taken = knapsack[item - 1][kgs]
+        taken = array[item][value] * (kgs // array[item][heft]) + knapsack[item][kgs % array[item][heft]]
+        knapsack[item][kgs] = max(taken, not_taken)  
+      else:
+        knapsack[item][kgs] = knapsack[item - 1][kgs]
+
+  return knapsack[len(array) - 1][weight]
+
+weight = 8
+items = [[5, 10], [1, 1], [2, 4], [3, 7]]
+print(unbounded_knapsack(weight=weight, array=items))
 ```
 
+```ad-example
+The table below defines the items with the values and weights.
+
+| Value | Weight |
+| ----- | ------ |
+| 1     | 1      |
+| 4     | 2      |
+| 7     | 3      |
+| 10    | 5      |
+Then, initialize the table so that the first row is filled.
+
+|      | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   |
+| ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1/1  | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   |
+| 2/4  |     |     |     |     |     |     |     |     |     |
+| 3/7  |     |     |     |     |     |     |     |     |     |
+| 5/10 |     |     |     |     |     |     |     |     |     |
+Fill in every index, and when that's done, the bottom right index is the maximum value for the weight constraints.
+
+|      | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   |
+| ---- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1/1  | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   |
+| 2/4  | 0   | 1   | 4   | 5   | 8   | 7   | 12  | 13  | 16  |
+| 3/7  | 0   | 1   | 4   | 7   | 8   | 11  | 14  | 15  | 18  |
+| 5/10 | 0   | 1   | 4   | 7   | 8   | 11  | 14  | 15  | 18  |
+```
+
+___
+# References
+[[Algorithms]]

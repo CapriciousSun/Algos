@@ -12,7 +12,7 @@ A minimum spanning tree (MST) is a subset of edges in a connected, edge-weighted
 [[Kruskal's Algorithm|Kruskal's algorithm]] starts with the cheapest edge globally and grows the tree by finding more expensive lines to connect and eventually, the lines begin to connect.
 
 ## Knapsack Problem
-The [[Knapsack Problem|knapsack problem]] is a range of problems that focused on a hypothetical "knapsack" with a maximum weight, and items that be put in, each with a weight and value. The key to the problem is solving for the maximum value that would fit in the max weight. Knapsack problems tend to be solved with [[Dynamic Algorithms|dynamic programming]], because greedy algorithms do not look at every possible answer, just the local optimum.
+The [[Knapsack Problem|knapsack problem]] is a range of problems that focused on a hypothetical "knapsack" with a maximum weight, and items that be put in, each with a weight and value. The key to the problem is solving for the maximum value that would fit in the max weight. Knapsack problems tend to be solved with [[Dynamic Programming|dynamic programming]], because greedy algorithms do not look at every possible answer, just the local optimum.
 ___
 # References
 [[Algorithms]]
